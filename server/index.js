@@ -1,27 +1,33 @@
-const app = require('./app').app;
-const mongoose = require('./app').mongoose;
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
 const db = mongoose.connection;
+const deviceRouter = require('./controllers/devices');
 
 const logger = require('./utils/logger');
 const config = require('./utils/config');
+const cors = require('cors');
 
-db.once('open', () => {
-    app.listen(config.PORT, () => {
-        logger.info('Device Issuance server listening on port 8080.');
+logger.info('Attempting to connect to Device Issuance database...');
+mongoose.connect(config.DB_URI)
+    .then(() => {
+        logger.info('Connected to Device Issuance database!')
+    })
+    .catch((error) => {
+        logger.error('Error while connecting to Device Issuance database:', error.message)
     });
 
-    io.on('connection', (socket) => {
-        logger.info('Client count:', io.engine.clientsCount)
-    })
+    db.once('open', () => {
+        app.listen(config.PORT, () => {
+            logger.info(`Device Issuance server listening on port ${config.PORT}`);
+        });
+    });
 
-    io.engine.on('connection_error', (err) => {
-        logger.error(err.req)
-        logger.error(err.code)
-        logger.error(err.message)
-        logger.error(err.context)
-    })
-})
+app.use(cors());
+app.use(express.json());
+app.use('/', deviceRouter);
 
 module.exports = {
-    app
-}
+    app,
+    mongoose
+};
