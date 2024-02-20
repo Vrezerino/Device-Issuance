@@ -30,31 +30,33 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 function createData(
     deviceName,
-    manufacturer,
+    deviceManufacturer,
     deviceNumber,
     recipientName,
-    department,
+    recipientDepartment,
+    issueDate,
+    returnDate
 ) {
-    return { deviceName, manufacturer, deviceNumber, recipientName, department };
+    return { 
+        deviceName,
+        deviceManufacturer,
+        deviceNumber,
+        recipientName,
+        recipientDepartment,
+        issueDate,
+        returnDate
+    };
 }
 
-/*
-const rows0 = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-*/
-
-export default function CustomizedTables({ devices }) {
-    const rows = devices.map(device => createData(
+export default function CustomizedTable({ devices }) {
+    const rows = devices?.map(device => createData(
         device.deviceName,
-        device.manufacturer,
+        device.deviceManufacturer,
         device.deviceNumber,
         device.recipientName,
-        device.department,
+        device.recipientDepartment,
+        device.issueDate,
+        device.returnDate
     ));
 
     return (
@@ -67,18 +69,22 @@ export default function CustomizedTables({ devices }) {
                         <StyledTableCell align="right">Device Number</StyledTableCell>
                         <StyledTableCell align="right">Recipient Name</StyledTableCell>
                         <StyledTableCell align="right">Department</StyledTableCell>
+                        <StyledTableCell align="right">Issue Date</StyledTableCell>
+                        <StyledTableCell align="right">Return Date</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {rows?.map((row) => (
                         <StyledTableRow key={row.deviceName}>
                             <StyledTableCell component="th" scope="row">
                                 {row.deviceName}
                             </StyledTableCell>
-                            <StyledTableCell align="right">{row.manufacturer}</StyledTableCell>
+                            <StyledTableCell align="right">{row.deviceManufacturer}</StyledTableCell>
                             <StyledTableCell align="right">{row.deviceNumber}</StyledTableCell>
                             <StyledTableCell align="right">{row.recipientName}</StyledTableCell>
-                            <StyledTableCell align="right">{row.department}</StyledTableCell>
+                            <StyledTableCell align="right">{row.recipientDepartment}</StyledTableCell>
+                            <StyledTableCell align="right">{row.issueDate}</StyledTableCell>
+                            <StyledTableCell align="right">{row.returnDate}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

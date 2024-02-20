@@ -32,7 +32,7 @@ const deviceSchema = mongoose.Schema({
 		validate: validators,
 		maxlength: [50, 'Poster name max length is 50.']
 	},
-	department: {
+	recipientDepartment: {
 		type: String,
 		validate: validators,
 		maxlength: [3000, 'Content max length is 3000.']

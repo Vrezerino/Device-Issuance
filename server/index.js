@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
 const db = mongoose.connection;
@@ -6,7 +7,6 @@ const deviceRouter = require('./controllers/devices');
 
 const logger = require('./utils/logger');
 const config = require('./utils/config');
-const cors = require('cors');
 
 logger.info('Attempting to connect to Device Issuance database...');
 mongoose.connect(config.DB_URI)
@@ -25,7 +25,7 @@ mongoose.connect(config.DB_URI)
 
 app.use(cors());
 app.use(express.json());
-app.use('/', deviceRouter);
+app.use('/api/devices', deviceRouter);
 
 module.exports = {
     app,
