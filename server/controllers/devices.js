@@ -12,8 +12,13 @@ deviceRouter.get('/', async (req, res, next) => {
 
 deviceRouter.post('/', async (req, res, next) => {
     const issueDate = new Date().toUTCString();
-    try {
+    const device = new Device({
+        ...req.body,
+        issueDate: req.body.issueDate
+    });
 
+    try {
+        const addedDevice = device.save();
     } catch (e) {
         next(e);
     }

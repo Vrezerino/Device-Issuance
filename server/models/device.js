@@ -11,7 +11,7 @@ const validators = [
 ]
 
 const deviceSchema = mongoose.Schema({
-    date: String,
+    issueDate: String,
 	deviceName: {
 		type: String,
 		validate: validators,
