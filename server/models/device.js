@@ -12,20 +12,30 @@ const validators = [
 
 const deviceSchema = mongoose.Schema({
     date: String,
-	name: {
+	deviceName: {
 		type: String,
 		validate: validators,
 		maxlength: [50, 'Poster name max length is 50.']
 	},
-	manufacturer: {
+	deviceManufacturer: {
 		type: String,
 		validate: validators,
 		maxlength: [3000, 'Content max length is 3000.']
 	},
-	number: {
+	deviceNumber: {
 		type: String,
 		validate: validators,
 		maxlength: [90, 'Title max length is 90.']
+	},
+    recipientName: {
+		type: String,
+		validate: validators,
+		maxlength: [50, 'Poster name max length is 50.']
+	},
+	department: {
+		type: String,
+		validate: validators,
+		maxlength: [3000, 'Content max length is 3000.']
 	},
 	returnDate: {
 		data: Buffer,
