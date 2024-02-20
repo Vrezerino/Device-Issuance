@@ -1,22 +1,26 @@
+import React, { useState, useEffect } from 'react';
+import deviceService from './services/deviceService';
 import './App.css';
 
 const App = () => {
+  const [devices, setDevices] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const data = await deviceService.fetchDevices();
+      setDevices(data);
+    } catch (e) {
+      //
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
     </div>
   );
 }

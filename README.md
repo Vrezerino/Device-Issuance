@@ -1,2 +1,2 @@
-# Device-Issuance
-Virittämö-projekti; MERN-appi laitteiden syöttämiseen tietokantaan. 
+# Device Issuance Service
+Virittämö-koodihaaste; MERN-appi laitteiden syöttämiseen tietokantaan. 
