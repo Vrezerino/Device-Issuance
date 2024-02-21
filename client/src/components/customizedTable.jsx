@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -46,30 +48,30 @@ export default function CustomizedTable({ devices }) {
 
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <Table sx={{ minWidth: 700 }} aria-label='customized table'>
                 <TableHead>
                     <TableRow>
                         <StyledTableCell>Device Name</StyledTableCell>
-                        <StyledTableCell align="right">Manufacturer</StyledTableCell>
-                        <StyledTableCell align="right">Device Number</StyledTableCell>
-                        <StyledTableCell align="right">Recipient Name</StyledTableCell>
-                        <StyledTableCell align="right">Department</StyledTableCell>
-                        <StyledTableCell align="right">Issue Date</StyledTableCell>
-                        <StyledTableCell align="right">Return Date</StyledTableCell>
+                        <StyledTableCell align='right'>Manufacturer</StyledTableCell>
+                        <StyledTableCell align='right'>Device Number</StyledTableCell>
+                        <StyledTableCell align='right'>Recipient Name</StyledTableCell>
+                        <StyledTableCell align='right'>Department</StyledTableCell>
+                        <StyledTableCell align='right'>Issue Date</StyledTableCell>
+                        <StyledTableCell align='right'>Return Date</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {rows?.map((row, i) => (
                         <StyledTableRow key={i}>
-                            <StyledTableCell component="th" scope="row">
-                                <b>{row?.deviceName}</b>
+                            <StyledTableCell component='th' scope='row'>
+                                <Link key={row?.deviceNumber} to={`/devices/${row?.deviceNumber}`}><b>{row?.deviceName}</b></Link>
                             </StyledTableCell>
-                            <StyledTableCell align="right"><b>{row?.deviceManufacturer}</b></StyledTableCell>
-                            <StyledTableCell align="right">{row?.deviceNumber}</StyledTableCell>
-                            <StyledTableCell align="right">{row?.recipientName}</StyledTableCell>
-                            <StyledTableCell align="right">{row?.recipientDepartment}</StyledTableCell>
-                            <StyledTableCell align="right">{row?.issueDate}</StyledTableCell>
-                            <StyledTableCell align="right">{row?.returnDate}</StyledTableCell>
+                            <StyledTableCell align='right'><b>{row?.deviceManufacturer}</b></StyledTableCell>
+                            <StyledTableCell align='right'>{row?.deviceNumber}</StyledTableCell>
+                            <StyledTableCell align='right'>{row?.recipientName}</StyledTableCell>
+                            <StyledTableCell align='right'>{row?.recipientDepartment}</StyledTableCell>
+                            <StyledTableCell align='right'>{row?.issueDate}</StyledTableCell>
+                            <StyledTableCell align='right'>{row?.returnDate}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

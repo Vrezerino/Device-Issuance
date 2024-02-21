@@ -24,6 +24,6 @@ const CssTextField = styled(TextField)({
 
 export default function SearchField({ searchDevice }) {
     return (
-        <CssTextField label="Search Devices" id="custom-css-outlined-input" onChange={searchDevice}/>
+        <CssTextField label='Search Devices' id='custom-css-outlined-input' onChange={searchDevice}/>
     )
 };

@@ -27,6 +27,7 @@ const deviceSchema = mongoose.Schema({
 		maxlength: [30, 'Device number max length is 30.']
 	},
 	issues: Array,
+	image: String
 	/*
 	issueDate: String,
     recipientName: {

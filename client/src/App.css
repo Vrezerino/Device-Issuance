@@ -18,8 +18,18 @@ label {
     color: white;
 }
 
-.searchContainer {
+.searchFormContainer {
     float: right;
+}
+
+.resultCardContainer {
+    margin: 5px;
+}
+
+.searchResultContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .css-1hdyuqk-MuiPaper-root-MuiAlert-root {

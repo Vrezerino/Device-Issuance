@@ -18,13 +18,13 @@ const TextInputLiveFeedback = ({ label, helpText, ...props }) => {
           showFeedback ? (meta.error ? 'invalid' : 'valid') : ''
         }`}
       >
-        <div className="flex items-center space-between">
+        <div className='flex items-center space-between'>
           <label htmlFor={props.id}>{label}</label>{' '}
           {showFeedback ? (
             <div
               id={`${props.id}-feedback`}
-              aria-live="polite"
-              className="feedback text-sm"
+              aria-live='polite'
+              className='feedback text-sm'
             >
               {meta.error ? meta.error : '✓'}
             </div>
@@ -36,7 +36,7 @@ const TextInputLiveFeedback = ({ label, helpText, ...props }) => {
           aria-describedby={`${props.id}-feedback ${props.id}-help`}
           onFocus={handleFocus}
         />
-        <div className="text-xs" id={`${props.id}-help`} tabIndex="-1">
+        <div className='text-xs' id={`${props.id}-help`} tabIndex='-1'>
           {helpText}
         </div>
       </div>
