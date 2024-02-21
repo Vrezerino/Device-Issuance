@@ -8,12 +8,18 @@ body {
     background-repeat: no-repeat;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     color: white;
 }
 
 label {
     color: white;
+}
+
+.searchContainer {
+    float: right;
 }
 
 .css-1hdyuqk-MuiPaper-root-MuiAlert-root {

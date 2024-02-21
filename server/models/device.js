@@ -14,17 +14,17 @@ const deviceSchema = mongoose.Schema({
 	deviceName: {
 		type: String,
 		validate: validators,
-		maxlength: [50, 'Poster name max length is 50.']
+		maxlength: [30, 'Device name max length is 30.']
 	},
 	deviceManufacturer: {
 		type: String,
 		validate: validators,
-		maxlength: [3000, 'Content max length is 3000.']
+		maxlength: [30, 'Manufacturer name max length is 30.']
 	},
 	deviceNumber: {
 		type: String,
 		validate: validators,
-		maxlength: [90, 'Title max length is 90.']
+		maxlength: [30, 'Device number max length is 30.']
 	},
 	issues: Array,
 	/*
