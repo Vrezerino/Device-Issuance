@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useField } from 'formik';
 
 const TextInputLiveFeedback = ({ label, helpText, ...props }) => {
@@ -6,7 +7,7 @@ const TextInputLiveFeedback = ({ label, helpText, ...props }) => {
     // Show inline feedback if EITHER
     // - the input is focused AND value is longer than 2 characters
     // - or, the has been visited (touched === true)
-    const [didFocus, setDidFocus] = React.useState(false);
+    const [didFocus, setDidFocus] = useState(false);
     const handleFocus = () => setDidFocus(true);
     const showFeedback =
       (!!didFocus && field.value.trim().length > 2) || meta.touched;

@@ -11,7 +11,6 @@ const validators = [
 ]
 
 const deviceSchema = mongoose.Schema({
-    issueDate: String,
 	deviceName: {
 		type: String,
 		validate: validators,
@@ -27,6 +26,9 @@ const deviceSchema = mongoose.Schema({
 		validate: validators,
 		maxlength: [90, 'Title max length is 90.']
 	},
+	issues: Array,
+	/*
+	issueDate: String,
     recipientName: {
 		type: String,
 		validate: validators,
@@ -41,6 +43,7 @@ const deviceSchema = mongoose.Schema({
 		data: Buffer,
 		type: String
 	},
+	*/
 });
 
 module.exports = mongoose.model('Device', deviceSchema);

@@ -28,36 +28,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function createData(
-    deviceName,
-    deviceManufacturer,
-    deviceNumber,
-    recipientName,
-    recipientDepartment,
-    issueDate,
-    returnDate
-) {
-    return { 
-        deviceName,
-        deviceManufacturer,
-        deviceNumber,
-        recipientName,
-        recipientDepartment,
-        issueDate,
-        returnDate
-    };
-}
-
 export default function CustomizedTable({ devices }) {
-    const rows = devices?.map(device => createData(
-        device.deviceName,
-        device.deviceManufacturer,
-        device.deviceNumber,
-        device.recipientName,
-        device.recipientDepartment,
-        device.issueDate,
-        device.returnDate
-    ));
+    // Make a list of all issues of all devices.
+    const rows = [];
+    devices?.forEach((device) => {
+        device.issues.forEach((issue) => -
+            rows.push({
+                deviceName: device.deviceName,
+                deviceManufacturer: device.deviceManufacturer,
+                deviceNumber: device.deviceNumber,
+                issueDate: issue.issueDate,
+                recipientName: issue.recipientName,
+                recipientDepartment: issue.recipientDepartment,
+                returnDate: issue.returnDate
+            }))
+    });
 
     return (
         <TableContainer component={Paper}>
@@ -74,17 +59,17 @@ export default function CustomizedTable({ devices }) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows?.map((row) => (
-                        <StyledTableRow key={row.deviceName}>
+                    {rows?.map((row, i) => (
+                        <StyledTableRow key={i}>
                             <StyledTableCell component="th" scope="row">
-                                {row.deviceName}
+                                <b>{row?.deviceName}</b>
                             </StyledTableCell>
-                            <StyledTableCell align="right">{row.deviceManufacturer}</StyledTableCell>
-                            <StyledTableCell align="right">{row.deviceNumber}</StyledTableCell>
-                            <StyledTableCell align="right">{row.recipientName}</StyledTableCell>
-                            <StyledTableCell align="right">{row.recipientDepartment}</StyledTableCell>
-                            <StyledTableCell align="right">{row.issueDate}</StyledTableCell>
-                            <StyledTableCell align="right">{row.returnDate}</StyledTableCell>
+                            <StyledTableCell align="right"><b>{row?.deviceManufacturer}</b></StyledTableCell>
+                            <StyledTableCell align="right">{row?.deviceNumber}</StyledTableCell>
+                            <StyledTableCell align="right">{row?.recipientName}</StyledTableCell>
+                            <StyledTableCell align="right">{row?.recipientDepartment}</StyledTableCell>
+                            <StyledTableCell align="right">{row?.issueDate}</StyledTableCell>
+                            <StyledTableCell align="right">{row?.returnDate}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

@@ -2,6 +2,20 @@
     font-family: 'Roboto';
 }
 
+body {
+    margin: 2em;
+    background-image: url('../public/img/global-it-services-sacramento-ca.jpg');
+    background-repeat: no-repeat;
+}
+
+h1, h2, h3 {
+    color: white;
+}
+
+label {
+    color: white;
+}
+
 .css-1hdyuqk-MuiPaper-root-MuiAlert-root {
     opacity: 1;
 }

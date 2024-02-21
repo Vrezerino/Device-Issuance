@@ -10,17 +10,36 @@ deviceRouter.get('/', async (req, res, next) => {
     }
 });
 
-deviceRouter.post('/', async (req, res, next) => {
-    const issueDate = new Date().toUTCString();
-    const device = new Device({
-        ...req.body,
-        issueDate: req.body.issueDate
-    });
+deviceRouter.post('/:deviceNumber', async (req, res, next) => {
+    const issueDate = new Date().toDateString();
 
-    try {
-        const addedDevice = device.save();
-    } catch (e) {
-        next(e);
+    // If issue's device exists, update the device's issue list. Otherwise save new device.
+    const result = Device.findOne({ deviceNumber: req.body.deviceNumber }).select('deviceNumber').lean();
+    if (result) {
+        await Device.findOneAndUpdate(
+            { deviceNumber: req.body.deviceNumber },
+            {
+                $push: {
+                    issues:
+                    {
+                        issueDate: issueDate,
+                        recipientName: req.body.recipientName,
+                        recipientDepartment: req.body.recipientDepartment,
+                        returnDate: req.body.returnDate
+                    }
+                }
+            }
+        )
+        res.status(201).send(JSON.stringify(result));
+    } else {
+        const device = new Device({ ...req.body });
+        try {
+            const savedDevice = device.save();
+            // Status Code 201 = Created
+            res.status(201).send(JSON.stringify(savedDevice));
+        } catch (e) {
+            next(e);
+        }
     }
 });
 

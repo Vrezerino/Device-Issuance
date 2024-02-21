@@ -10,7 +10,7 @@ const App = () => {
   const [devices, setDevices] = useState([]);
   const [notif, setNotif] = useState(null);
   const [addIssue, setAddIssue] = useState(null); // For toggling the form of device issue.
-
+  const onClick = () => setAddIssue(true); // Toggler func for 'Add Device' button.
 
   const fetchData = async () => {
     try {
@@ -27,11 +27,13 @@ const App = () => {
 
   return (
     <div className='App'>
-      <h1>Device Issuance</h1>
+      <h1>Device Issuance — ICT Team</h1>
+      <h3>All issues</h3>
       {notif && <Alert severity={notif.severity} message={notif.message} />}
-      <CustomizedTable devices={devices} />
-      <Button text='Add Device' />
-      {addIssue && <IssueForm />}
+      <CustomizedTable devices={devices} /><br />
+      <Button text='New Issue' handleClick={onClick} />
+
+      {addIssue && <IssueForm handleClick={setAddIssue} setNotif={setNotif} setDevices={setDevices}/>}
     </div>
   );
 }
