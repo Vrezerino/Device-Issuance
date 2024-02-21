@@ -6,7 +6,16 @@ deviceRouter.get('/', async (req, res, next) => {
         const all = await Device.find({});
         res.json(all);
     } catch (e) {
-        next(e);
+        res.send(e.message);
+    }
+});
+
+deviceRouter.get('/:deviceNumber', async (req, res, next) => {
+    try {
+        const result = await Device.findOne({ deviceNumber: req.params.deviceNumber });
+        res.json(result);
+    } catch (e) {
+        res.send(e.message);
     }
 });
 
