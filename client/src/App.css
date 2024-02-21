@@ -1,3 +1,11 @@
+* {
+    font-family: 'Roboto';
+}
+
 .css-1hdyuqk-MuiPaper-root-MuiAlert-root {
     opacity: 1;
+}
+
+.css-sghohy-MuiButtonBase-root-MuiButton-root {
+    margin: 3px;
 }
