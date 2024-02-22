@@ -26,6 +26,11 @@ const deviceSchema = mongoose.Schema({
 		validate: validators,
 		maxlength: [30, 'Device number max length is 30.']
 	},
+	description: {
+		type: String,
+		validate: validators,
+		maxlength: [500, 'Device description max length is 500.']
+	},
 	issues: Array,
 	image: String
 	/*

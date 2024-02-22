@@ -7,7 +7,7 @@ import './issueForm.css';
 const IssueForm = ({ deviceDetails, handleClick, setNotif }) => {
   // handleClick() = setAddIssue(). Hides device issue form when set false.
   const hideForm = () => handleClick(false);
-  
+
   /*
   Form is being populated by device details if editing an existing device.
   Otherwise, show empty fields.
@@ -15,6 +15,7 @@ const IssueForm = ({ deviceDetails, handleClick, setNotif }) => {
   const formik = useFormik({
     initialValues: {
       deviceName: deviceDetails?.deviceName || '',
+      deviceDescription: deviceDetails?.deviceDescription || '',
       deviceManufacturer: deviceDetails?.deviceManufacturer || '',
       deviceNumber: deviceDetails?.deviceNumber || '',
       recipientName: deviceDetails?.recipientName || '',
@@ -32,6 +33,7 @@ const IssueForm = ({ deviceDetails, handleClick, setNotif }) => {
     },/*
     validationSchema: Yup.object({
       deviceName: Yup.string().required('Device name is required.').max(30),
+      deviceDescription: Yup.string().max(200),
       deviceManuFacturer: Yup.string().required(`Manufacturer's name is required.`).max(30),
       deviceNumber: Yup.string().required(`Device number is required.`).max(30),
       recipientName: Yup.string().required(`Recipient's name is required.`).max(30),
@@ -47,6 +49,12 @@ const IssueForm = ({ deviceDetails, handleClick, setNotif }) => {
           label='Device Name'
           id='deviceName'
           name='deviceName'
+          type='text'
+        />
+        <TextInputLiveFeedback
+          label='Device Description'
+          id='deviceDescription'
+          name='deviceDescription'
           type='text'
         />
         <TextInputLiveFeedback

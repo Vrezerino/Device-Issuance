@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { fetchDevices } from './services/deviceService';
-import { createBrowserRouter, RouterProvider, useParams } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 
+import Header from './components/Header';
 import SearchField from './components/SearchField';
 import SearchResults from './components/SearchResults';
 import DevicePage from './components/DevicePage';
@@ -18,7 +19,7 @@ const App = () => {
 
   const [notif, setNotif] = useState(null);
   const [addIssue, setAddIssue] = useState(null); // For toggling the form of device issue.
-  const onClick = () => setAddIssue(true); // Toggler func for 'Add Device' button.
+  const openIssueForm = () => setAddIssue(true); // Toggler func for 'Add Device' button.
 
   // Request all devices from server.
   const fetchData = async () => {
@@ -52,42 +53,44 @@ const App = () => {
     }
   }
 
-  const { deviceNumber } = useParams();
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path='/' element={
+          <>
+            <Header />
+            <div className='searchFormContainer'>
+              <SearchField searchDevice={searchDevice} length={devices.length} />
+            </div>
 
-  const router = createBrowserRouter([
-    {
-      ////// INDEX PAGE //////
-      path: '/',
-      element: <>
-        <h1>Device Issuance — ICT Team</h1>
+            {/* Render notification conditionally. */}
+            {notif && <Alert severity={notif.severity} message={notif.message} />}
 
-        <div className='searchFormContainer'>
-          <SearchField searchDevice={searchDevice} />
-        </div>
+            {/* 
+              Any existing search results will cause SearchResults 
+              to render, instead of the main device issue view.
+            */}
+            {searchResults.length > 0
+              ? <SearchResults results={searchResults} />
+              : <>
+                <h3>All issues</h3>
+                <CustomizedTable devices={devices} /><br />
+                <Button text='New Issue' handleClick={openIssueForm} />
 
-        {notif && <Alert severity={notif.severity} message={notif.message} />}
-
-        {/* 
-            Any existing search results will cause SearchResults 
-            to render, instead of the main device issue view.
-        */}
-        {searchResults.length > 0
-          ? <SearchResults results={searchResults} />
-          : <>
-            <h3>All issues</h3>
-            <CustomizedTable devices={devices} /><br />
-            <Button text='New Issue' handleClick={onClick} />
-
-            {addIssue && <IssueForm handleClick={setAddIssue} setNotif={setNotif} setDevices={setDevices} />}
-          </>}
+                {/* Render device issue form if toggled by pressing the button above. */}
+                {addIssue && <IssueForm handleClick={setAddIssue} setNotif={setNotif} setDevices={setDevices} />}
+              </>}
+          </>
+        } />
+        <Route path='/devices/:deviceNumber' element={
+          <>
+            <Header />
+            <DevicePage devices={devices} setNotif={setNotif}/>
+          </>} />
       </>
-    },
-    {
-      ////// DEVICE VIEW PAGE //////
-      path: '/devices/:deviceNumber',
-      element: <DevicePage device={devices.find(d => d.deviceNumber === deviceNumber)} />
-    }
-  ])
+    )
+  );
+
 
   return (
     <React.StrictMode>
