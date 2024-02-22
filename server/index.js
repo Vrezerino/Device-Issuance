@@ -11,10 +11,10 @@ const config = require('./utils/config');
 logger.info('Attempting to connect to Device Issuance database...');
 mongoose.connect(config.DB_URI)
     .then(() => {
-        logger.info('Connected to Device Issuance database!')
+        logger.info('Connected to Device Issuance database!');
     })
     .catch((error) => {
-        logger.error('Error while connecting to Device Issuance database:', error.message)
+        logger.error('Error while connecting to Device Issuance database:', error.message);
     });
 
     db.once('open', () => {
