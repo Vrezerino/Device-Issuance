@@ -48,6 +48,10 @@ label {
     justify-content: center;
 }
 
+.issuedTo {
+    margin-top: 1em;
+}
+
 .css-1hdyuqk-MuiPaper-root-MuiAlert-root {
     opacity: 1;
 }

@@ -43,11 +43,19 @@ export default function DevicePage({ devices, setNotif }) {
                 <Typography gutterBottom variant='h2' component='div'>
                     {device?.deviceName}
                 </Typography>
+                
                 <Typography variant='body1' color='text.secondary'>
                     Manufacturer: {device?.deviceManufacturer}<br />
                     Device Number: {device?.deviceNumber}<br /><br />
 
                     {device?.deviceDescription}
+                </Typography>
+                
+                <Typography variant='body2' color='text.secondary' marginTop={'1em'}>
+                    Issued to:<br />
+                    <ul>
+                        {device?.issues?.map(issue => <li>{`${issue.recipientName} at ${issue.recipientDepartment} on ${issue.issueDate}`}</li>)}
+                    </ul>
                 </Typography>
             </CardContent>
             <CardActions>
