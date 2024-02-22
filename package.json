@@ -3,6 +3,9 @@
     "workspaces": [
       "server",
       "client"
-    ]
+    ],
+    "scripts": {
+        "build": "react-scripts build"
+    }
   }
   
