@@ -24,9 +24,7 @@ const IssueForm = ({ deviceDetails, handleClick, setNotif, devices, setDevices }
     },
     onSubmit: async (values) => {
       try {
-        console.log('post');
         const response = await postDevice({ ...values });
-        console.log(response.data);
         setDevices([ ...devices, response])
         setNotif({ severity: 'success', message: 'Device added!' });
         hideForm();

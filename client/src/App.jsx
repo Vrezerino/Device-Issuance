@@ -19,7 +19,7 @@ const App = () => {
 
   const [notif, setNotif] = useState(null);
   const [addIssue, setAddIssue] = useState(null); // For toggling the form of device issue.
-  const openIssueForm = () => setAddIssue(true); // Toggler func for 'Add Device' button.
+  const openIssueForm = () => setAddIssue(true); // Toggler func for 'New Issue' button.
 
   // Request all devices from server.
   const fetchData = async () => {
