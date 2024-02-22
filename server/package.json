@@ -4,9 +4,9 @@
   "description": "device issuance back-end",
   "main": "index.js",
   "scripts": {
-    "vercel build": "react-scripts build",
-    "build": "react-scripts build",
-    "start": "set NODE_ENV=production&&node index.js",
+    "vercel build": "npm i&&react-scripts build",
+    "build": "npm i&&react-scripts build",
+    "start": "npm i&&set NODE_ENV=production&&node index.js",
     "start-dev": "set NODE_ENV=development&&node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "serve -s build"
