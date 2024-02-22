@@ -17,7 +17,7 @@ body {
     margin: 2em;
     background-image: url('../public/img/global-it-services-sacramento-ca.jpg');
     background-repeat: no-repeat;
-    animation: 1.2s emerge;
+    animation: 0.5s emerge;
 }
 
 h1,
