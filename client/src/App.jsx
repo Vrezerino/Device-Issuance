@@ -78,7 +78,7 @@ const App = () => {
                 <Button text='New Issue' handleClick={openIssueForm} />
 
                 {/* Render device issue form if toggled by pressing the button above. */}
-                {addIssue && <IssueForm handleClick={setAddIssue} setNotif={setNotif} setDevices={setDevices} />}
+                {addIssue && <IssueForm handleClick={setAddIssue} setNotif={setNotif} devices={devices} setDevices={setDevices} />}
               </>}
           </>
         } />

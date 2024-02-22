@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
-const badwords = require('../utils/badwords');
+//const badwords = require('../utils/badwords');
 
-// Validation functions; values must not be empty nor contain badwords.
+// Validation function; values must not be empty nor contain badwords.
 const isNotEmpty = (string) => string !== ''
-const containsNoBadwords = (string) => !badwords.array.some(badword => string.toLowerCase().includes(badword));
 
 const validators = [
 	{ validator: isNotEmpty, msg: 'No content.' },
-	{ validator: containsNoBadwords, msg: 'Watch your language.' }
 ]
 
 const deviceSchema = mongoose.Schema({
@@ -26,7 +24,7 @@ const deviceSchema = mongoose.Schema({
 		validate: validators,
 		maxlength: [30, 'Device number max length is 30.']
 	},
-	description: {
+	deviceDescription: {
 		type: String,
 		validate: validators,
 		maxlength: [500, 'Device description max length is 500.']

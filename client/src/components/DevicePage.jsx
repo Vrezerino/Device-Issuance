@@ -47,7 +47,7 @@ export default function DevicePage({ devices, setNotif }) {
                     Manufacturer: {device?.deviceManufacturer}<br />
                     Device Number: {device?.deviceNumber}<br /><br />
 
-                    {device?.description}
+                    {device?.deviceDescription}
                 </Typography>
             </CardContent>
             <CardActions>

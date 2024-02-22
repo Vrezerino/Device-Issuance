@@ -34,7 +34,7 @@ export default function CustomizedTable({ devices }) {
     // Make a list of all issues of all devices.
     const rows = [];
     devices?.forEach((device) => {
-        device.issues.forEach((issue) => -
+        device?.issues.forEach((issue) => -
             rows.push({
                 deviceName: device.deviceName,
                 deviceManufacturer: device.deviceManufacturer,

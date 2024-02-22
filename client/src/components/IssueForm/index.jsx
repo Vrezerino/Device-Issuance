@@ -1,10 +1,10 @@
 import { useFormik, FormikProvider, Form } from 'formik';
 import TextInputLiveFeedback from './TextInputLiveFeedback';
 import { postDevice } from '../../services/deviceService';
-//import * as Yup from 'yup';
+import * as Yup from 'yup';
 import './issueForm.css';
 
-const IssueForm = ({ deviceDetails, handleClick, setNotif }) => {
+const IssueForm = ({ deviceDetails, handleClick, setNotif, devices, setDevices }) => {
   // handleClick() = setAddIssue(). Hides device issue form when set false.
   const hideForm = () => handleClick(false);
 
@@ -25,21 +25,24 @@ const IssueForm = ({ deviceDetails, handleClick, setNotif }) => {
     onSubmit: async (values) => {
       try {
         console.log('post');
-        await postDevice({ ...values });
+        const response = await postDevice({ ...values });
+        console.log(response.data);
+        setDevices([ ...devices, response])
         setNotif({ severity: 'success', message: 'Device added!' });
+        hideForm();
       } catch (e) {
         setNotif({ severity: 'error', message: e.message });
       }
-    },/*
+    },
     validationSchema: Yup.object({
-      deviceName: Yup.string().required('Device name is required.').max(30),
+      deviceName: Yup.string()/*.required('Device name is required.')*/.max(30),
       deviceDescription: Yup.string().max(200),
-      deviceManuFacturer: Yup.string().required(`Manufacturer's name is required.`).max(30),
-      deviceNumber: Yup.string().required(`Device number is required.`).max(30),
-      recipientName: Yup.string().required(`Recipient's name is required.`).max(30),
-      recipientDepartment: Yup.string().required(`Department of recipient is required.`).max(25),
+      deviceManuFacturer: Yup.string()/*.required(`Manufacturer's name is required.`)*/.max(30),
+      deviceNumber: Yup.string()/*.required(`Device number is required.`)*/.max(30),
+      recipientName: Yup.string()/*.required(`Recipient's name is required.`)*/.max(30),
+      recipientDepartment: Yup.string()/*.required(`Department of recipient is required.`)*/.max(25),
       returnDate: Yup.string()
-    }),*/
+    }),
   });
 
   return (

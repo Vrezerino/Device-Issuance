@@ -27,7 +27,7 @@ deviceRouter.post('/:deviceNumber', async (req, res, next) => {
         returnDate: req.body.returnDate
     }
 
-    // If issue's device exists, update the device's issue list. Otherwise save new device.
+    // If issue's device exists, update the device's issue list. Otherwise save new device and add the issue in it.
     const result = await Device.findOne({ deviceNumber: req.body.deviceNumber }).select('deviceNumber').lean();
     if (result) {
         await Device.findOneAndUpdate(
@@ -44,7 +44,7 @@ deviceRouter.post('/:deviceNumber', async (req, res, next) => {
         const device = new Device({ ...req.body, issues: [newIssue] });
         try {
             const savedDevice = await device.save();
-            res.status(201).send(savedDevice);
+            res.status(201).json(savedDevice);
         } catch (e) {
             console.error(e.message);
         }
