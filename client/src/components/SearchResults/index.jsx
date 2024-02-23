@@ -6,7 +6,7 @@ import { CardActionArea } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 // "SearchResult" as a name could get confused with "SearchResults".
-function ResultCard({ device }) {
+const ResultCard = ({ device }) => {
     return (
         <Link key={device.deviceNumber} to={`/devices/${device.deviceNumber}`}>
             <div className='resultCardContainer'>

@@ -29,7 +29,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-export default function CustomizedTable({ devices }) {
+const CustomizedTable = ({ devices }) => {
     // Make a list of all issues of all devices.
     const rows = [];
     devices?.forEach((device) => {
@@ -78,3 +78,5 @@ export default function CustomizedTable({ devices }) {
         </TableContainer>
     );
 }
+
+export default CustomizedTable;

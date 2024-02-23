@@ -22,8 +22,10 @@ const CssTextField = styled(TextField)({
 
 });
 
-export default function SearchField({ searchDevice, length }) {
+const SearchField = ({ searchDevice, length }) => {
     return (
         <CssTextField label={`Search from all ${length} Devices`} id='custom-css-outlined-input' onChange={searchDevice}/>
     )
 };
+
+export default SearchField;

@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 
 import { fetchOne } from '../services/deviceService';
 
-export default function DevicePage({ devices, setNotif }) {
+const DevicePage = ({ devices, setNotif }) => {
     const [device, setDevice] = useState(null);
     const { deviceNumber: deviceNumberParam } = useParams();
 
@@ -66,3 +66,5 @@ export default function DevicePage({ devices, setNotif }) {
         </Card>
     );
 }
+
+export default DevicePage;
